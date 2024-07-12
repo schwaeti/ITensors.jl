@@ -172,6 +172,7 @@ function dmrg(
   eigsolve_verbosity=0,
   eigsolve_which_eigenvalue=:SR,
   ishermitian=true,
+  args = nothing,
 )
   if length(psi0) == 1
     error(
@@ -338,7 +339,7 @@ function dmrg(
       )
       flush(stdout)
     end
-    isdone = checkdone!(observer; energy, psi, sweep=sw, outputlevel)
+    isdone = checkdone!(observer; energy, psi, sweep=sw, outputlevel, args)
     isdone && break
   end
   return (energy, psi)
